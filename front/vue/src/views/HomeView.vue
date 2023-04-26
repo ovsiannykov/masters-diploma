@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import NewTaskFormAndTasksList from '../components/NewTaskFormAndTasksList.vue'
+</script>
 
 <template>
-  <main>
-    <h1>Hello</h1>
-  </main>
+  <div>
+    <NewTaskFormAndTasksList />
+  </div>
 </template>
+
+<style scoped></style>
