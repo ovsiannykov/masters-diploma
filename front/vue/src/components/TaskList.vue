@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <h1>Hello</h1>
+  <p>TaskList</p>
 </template>
 
 <style scoped></style>

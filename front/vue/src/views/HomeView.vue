@@ -1,10 +1,12 @@
 <script setup>
-import NewTaskFormAndTasksList from '../components/NewTaskFormAndTasksList.vue'
+import NewTaskForm from '../components/NewTaskForm.vue'
+import TaskList from '../components/TaskList.vue'
 </script>
 
 <template>
   <div>
-    <NewTaskFormAndTasksList />
+    <NewTaskForm />
+    <TaskList />
   </div>
 </template>
 

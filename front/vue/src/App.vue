@@ -1,11 +1,15 @@
 <script setup>
+import { initializeApp } from 'firebase/app'
 import { RouterView } from 'vue-router'
+import { firebaseConfig } from './firebase'
+
+const app = initializeApp(firebaseConfig)
 </script>
 
 <template>
-  <div class="app-container">
+  <main class="app-container">
     <RouterView />
-  </div>
+  </main>
 </template>
 
 <style scoped>
