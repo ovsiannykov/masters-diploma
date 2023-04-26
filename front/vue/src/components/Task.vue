@@ -7,9 +7,7 @@ export default {
     creationTime: Number,
     completed: Boolean
   },
-  setup(props) {
-    console.log(props.completed)
-  }
+  setup() {}
 }
 </script>
 

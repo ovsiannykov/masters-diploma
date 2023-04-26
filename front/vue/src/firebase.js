@@ -15,19 +15,33 @@ const db = getFirestore()
 
 export const taskCollection = collection(db, 'tasks')
 
-export function getTasks(myCollection) {
-  getDocs(myCollection)
-    .then((snapshot) => {
-      let tasks = []
-      snapshot.docs.forEach((doc) => {
-        tasks.push({ ...doc.data(), id: doc.id })
-      })
-      console.log(tasks)
+export async function getTasks(myCollection) {
+  let result = []
+  try {
+    const responce = await getDocs(myCollection)
+
+    responce.docs.map((doc) => {
+      result.push({ ...doc.data(), id: doc.id })
     })
-    .catch((err) => {
-      console.log(err.message)
-    })
+  } catch (error) {
+    console.log(error)
+  }
+
+  return result
 }
+
+// export function getTasks(myCollection) {
+//   getDocs(myCollection)
+//     .then((snapshot) => {
+//       let tasks = []
+//       snapshot.docs.forEach((doc) => {
+//         tasks.push({ ...doc.data(), id: doc.id })
+//       })
+//     })
+//     .catch((err) => {
+//       console.log(err.message)
+//     })
+// }
 
 /*
   :key="item.id"
