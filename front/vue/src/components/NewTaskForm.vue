@@ -98,7 +98,7 @@ form {
   width: 100%;
   font-size: 20px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 600px) {
