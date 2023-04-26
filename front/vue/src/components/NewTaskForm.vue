@@ -62,7 +62,7 @@ h1 {
   margin-bottom: 18px;
 }
 .new-task-section {
-  margin-bottom: 80px;
+  margin-bottom: 28px;
 }
 
 .new-task-container {
@@ -75,6 +75,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 }
 
 form {
@@ -104,7 +105,14 @@ form {
 @media only screen and (max-width: 600px) {
   .new-task-container {
     width: auto;
-    margin: 0 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .new-task-container {
+    margin-top: 80px;
   }
 }
 </style>

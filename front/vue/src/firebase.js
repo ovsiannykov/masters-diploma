@@ -28,3 +28,12 @@ export function getTasks(myCollection) {
       console.log(err.message)
     })
 }
+
+/*
+  :key="item.id"
+    :title="item.title"
+    :description="item.description"
+    :completed="item.completed"
+    :creationTime="item.creationTime"
+
+*/

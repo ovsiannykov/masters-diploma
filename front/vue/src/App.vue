@@ -43,6 +43,7 @@ header {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  position: fixed;
 }
 
 .app-container {
