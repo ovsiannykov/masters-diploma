@@ -1,9 +1,19 @@
 <script setup>
-import { initializeApp } from 'firebase/app'
+import { getDocs } from 'firebase/firestore'
 import { RouterView } from 'vue-router'
-import { firebaseConfig } from './firebase'
+import { taskCollection } from './firebase'
 
-const app = initializeApp(firebaseConfig)
+getDocs(taskCollection)
+  .then((snapshot) => {
+    let tasks = []
+    snapshot.docs.forEach((doc) => {
+      tasks.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(tasks)
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
 </script>
 
 <template>
