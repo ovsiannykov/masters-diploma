@@ -4,10 +4,17 @@ import TaskList from '../components/TaskList.vue'
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <NewTaskForm />
     <TaskList />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
