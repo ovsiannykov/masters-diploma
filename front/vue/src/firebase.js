@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { collection, getFirestore } from 'firebase/firestore'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDqEUqcDS3gVdtVWzidzl8c1IsIpbqReZA',
@@ -14,3 +14,17 @@ initializeApp(firebaseConfig)
 const db = getFirestore()
 
 export const taskCollection = collection(db, 'tasks')
+
+export function getTasks(myCollection) {
+  getDocs(myCollection)
+    .then((snapshot) => {
+      let tasks = []
+      snapshot.docs.forEach((doc) => {
+        tasks.push({ ...doc.data(), id: doc.id })
+      })
+      console.log(tasks)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+}

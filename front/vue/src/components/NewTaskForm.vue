@@ -1,35 +1,46 @@
 <script setup>
-import { reactive } from 'vue';
+import { addDoc } from 'firebase/firestore'
+import { reactive } from 'vue'
+import { getTasks, taskCollection } from '../firebase'
 
 const newTask = reactive({
   creationTime: null,
   description: '',
-
+  title: '',
   completed: false
 })
 
+const createNewTask = () => {
+  addDoc(taskCollection, {
+    ...newTask,
+    creationTime: Date.now()
+  }).then(() => {
+    getTasks(taskCollection)
+  })
 
+  newTask.description = ''
+  newTask.title = ''
 
-// const tasksCollection = db.collection('tasks')
-
-// const createNewTask = () => {
-//   tasksCollection.add({
-//     ...newTask,
-//     creationTime: Date.now()
-//   })
-
-//   newTask.description = ''
-
-//   return {
-//     newTask,
-//     createNewTask
-//   }
+  return {
+    newTask,
+    createNewTask
+  }
 }
 </script>
 
 <template>
   <h1>Create New Task</h1>
   <form @submit.prevent="createNewTask">
+    <div class="form-group">
+      <label for="newTaskDescription"> Task Title </label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Add new task title here"
+        required
+        v-model="newTask.title"
+      />
+    </div>
     <div class="form-group">
       <label for="newTaskDescription"> Task Description </label>
       <input
