@@ -21,14 +21,18 @@ export default {
   },
   mounted() {
     const handler = getTasksHandler.bind(this)
+    this.handler = handler
     handler()
+  },
+  methods: {
+    handler: getTasksHandler // можно также определить метод напрямую здесь
   }
 }
 </script>
 
 <template>
   <div class="container">
-    <NewTaskForm :getAllTasks="tasks" />
+    <NewTaskForm :getAllTasks="handler" />
     <TaskList :tasks="tasks" />
   </div>
 </template>

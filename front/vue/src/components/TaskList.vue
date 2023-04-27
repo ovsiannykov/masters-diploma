@@ -22,9 +22,9 @@ export default {
       :creationTime="item.creationTime"
     />
   </section>
-  <!-- <section v-else class="tasks-section">
+  <section v-if="!tasks || !tasks.length || tasks.length >= 0" class="tasks-section">
     <p v-if="!tasks.length || tasks.length <= 0" class="no-list">NO TASKS</p>
-  </section> -->
+  </section>
 </template>
 
 <style scoped>

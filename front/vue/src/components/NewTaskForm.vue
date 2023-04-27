@@ -1,33 +1,36 @@
-<script setup>
+<script>
 import { addDoc } from 'firebase/firestore'
 import { reactive } from 'vue'
 import { taskCollection } from '../firebase'
 
-const props = defineProps({
-  getAllTasks: Array
-})
+export default {
+  props: {
+    getAllTasks: Function
+  },
+  setup(props) {
+    const newTask = reactive({
+      creationTime: null,
+      description: '',
+      title: '',
+      completed: false
+    })
 
-const newTask = reactive({
-  creationTime: null,
-  description: '',
-  title: '',
-  completed: false
-})
+    const createNewTask = () => {
+      addDoc(taskCollection, {
+        ...newTask,
+        creationTime: Date.now()
+      }).then(() => {
+        props.getAllTasks()
+      })
 
-const createNewTask = () => {
-  addDoc(taskCollection, {
-    ...newTask,
-    creationTime: Date.now()
-  }).then(() => {
-    console.log(typeof props.getAllTasks())
-  })
+      newTask.description = ''
+      newTask.title = ''
+    }
 
-  newTask.description = ''
-  newTask.title = ''
-
-  return {
-    newTask,
-    createNewTask
+    return {
+      newTask,
+      createNewTask
+    }
   }
 }
 </script>
