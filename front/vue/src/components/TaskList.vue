@@ -1,26 +1,25 @@
 <script>
-import { getDocs } from 'firebase/firestore'
-import { taskCollection } from '../firebase'
+// import { getDocs } from 'firebase/firestore'
+import { getTasks, taskCollection } from '../firebase'
 import Task from './Task.vue'
+
+async function getTasksHandler() {
+  const result = await getTasks(taskCollection)
+  this.tasks = result
+}
 
 export default {
   components: {
     Task
   },
-  async created() {
-    const tasks = []
-
-    const querySnapshot = await getDocs(taskCollection)
-    querySnapshot.forEach((doc) => {
-      tasks.push({ ...doc.data(), id: doc.id })
-    })
-
-    this.tasks = tasks
-  },
   data() {
     return {
       tasks: []
     }
+  },
+  mounted() {
+    const handler = getTasksHandler.bind(this)
+    handler()
   }
 }
 </script>
