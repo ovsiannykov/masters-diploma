@@ -1,14 +1,17 @@
 <script>
+import { defineComponent } from 'vue'
 import Task from './Task.vue'
 
-export default {
+const TaskList = defineComponent({
   props: {
     tasks: String
   },
   components: {
     Task
   }
-}
+})
+
+export default TaskList
 </script>
 
 <template>

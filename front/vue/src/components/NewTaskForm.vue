@@ -1,9 +1,9 @@
 <script>
 import { addDoc } from 'firebase/firestore'
-import { reactive } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { taskCollection } from '../firebase'
 
-export default {
+const NewTaskForm = defineComponent({
   props: {
     getAllTasks: Function
   },
@@ -32,7 +32,9 @@ export default {
       createNewTask
     }
   }
-}
+})
+
+export default NewTaskForm
 </script>
 
 <template>

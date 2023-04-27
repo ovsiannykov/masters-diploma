@@ -1,4 +1,5 @@
 <script>
+import { defineComponent } from 'vue'
 import NewTaskForm from '../components/NewTaskForm.vue'
 import TaskList from '../components/TaskList.vue'
 
@@ -9,7 +10,7 @@ async function getTasksHandler() {
   this.tasks = result
 }
 
-export default {
+const HomeView = defineComponent({
   components: {
     NewTaskForm,
     TaskList
@@ -26,7 +27,9 @@ export default {
   methods: {
     handler: getTasksHandler
   }
-}
+})
+
+export default HomeView
 </script>
 
 <template>
