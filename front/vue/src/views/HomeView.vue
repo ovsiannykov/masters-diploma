@@ -21,11 +21,10 @@ export default {
   },
   mounted() {
     const handler = getTasksHandler.bind(this)
-    this.handler = handler
     handler()
   },
   methods: {
-    handler: getTasksHandler // можно также определить метод напрямую здесь
+    handler: getTasksHandler
   }
 }
 </script>
