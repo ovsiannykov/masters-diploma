@@ -1,7 +1,11 @@
 <script setup>
 import { addDoc } from 'firebase/firestore'
 import { reactive } from 'vue'
-import { getTasks, taskCollection } from '../firebase'
+import { taskCollection } from '../firebase'
+
+const props = defineProps({
+  getAllTasks: Array
+})
 
 const newTask = reactive({
   creationTime: null,
@@ -15,7 +19,7 @@ const createNewTask = () => {
     ...newTask,
     creationTime: Date.now()
   }).then(() => {
-    getTasks(taskCollection)
+    console.log(typeof props.getAllTasks())
   })
 
   newTask.description = ''
