@@ -1,13 +1,28 @@
-<script setup>
+<script>
 import { getDocs } from 'firebase/firestore'
 import { taskCollection } from '../firebase'
 import Task from './Task.vue'
 
-const tasks = []
-const querySnapshot = await getDocs(taskCollection)
-querySnapshot.forEach((doc) => {
-  tasks.push({ ...doc.data(), id: doc.id })
-})
+export default {
+  components: {
+    Task
+  },
+  async created() {
+    const tasks = []
+
+    const querySnapshot = await getDocs(taskCollection)
+    querySnapshot.forEach((doc) => {
+      tasks.push({ ...doc.data(), id: doc.id })
+    })
+
+    this.tasks = tasks
+  },
+  data() {
+    return {
+      tasks: []
+    }
+  }
+}
 </script>
 
 <template>
@@ -22,7 +37,7 @@ querySnapshot.forEach((doc) => {
     />
   </section>
   <section v-else class="tasks-section">
-    <p class="no-list">NO TASKS</p>
+    <p v-if="!tasks.length || tasks.length <= 0" class="no-list">NO TASKS</p>
   </section>
 </template>
 
