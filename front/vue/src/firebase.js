@@ -11,43 +11,36 @@ const firebaseConfig = {
 }
 
 initializeApp(firebaseConfig)
-const db = getFirestore()
+export const db = getFirestore()
 
 export const taskCollection = collection(db, 'tasks')
 
-export async function getTasks(myCollection) {
-  let result = []
-  try {
-    const responce = await getDocs(myCollection)
+// export async function getTasks(myCollection) {
+//   let result = []
+//   try {
+//     const responce = await getDocs(myCollection)
 
-    responce.docs.map((doc) => {
-      result.push({ ...doc.data(), id: doc.id })
-    })
-  } catch (error) {
-    console.log(error)
-  }
-
-  return result
-}
-
-// export function getTasks(myCollection) {
-//   getDocs(myCollection)
-//     .then((snapshot) => {
-//       let tasks = []
-//       snapshot.docs.forEach((doc) => {
-//         tasks.push({ ...doc.data(), id: doc.id })
-//       })
+//     await responce.docs.map((doc) => {
+//       result.push({ ...doc.data(), id: doc.id })
 //     })
-//     .catch((err) => {
-//       console.log(err.message)
-//     })
+
+//     return result
+//   } catch (error) {
+//     console.log(error)
+//     return []
+//   }
 // }
 
-/*
-  :key="item.id"
-    :title="item.title"
-    :description="item.description"
-    :completed="item.completed"
-    :creationTime="item.creationTime"
-
-*/
+export async function getTasks(myCollection) {
+  try {
+    const snapshot = await getDocs(myCollection)
+    let taskArr = []
+    snapshot.docs.forEach((doc) => {
+      taskArr.push({ ...doc.data(), id: doc.id })
+    })
+    return taskArr
+  } catch (error) {
+    console.error(error)
+    return []
+  }
+}

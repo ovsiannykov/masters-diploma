@@ -1,14 +1,35 @@
 <script>
-export default {
+import { defineComponent } from 'vue'
+
+function deleteTaskHandler(props) {
+  //const docRef = doc(db, 'tasks', id)
+  // deleteDoc(docRef)
+  //   .then(() => getAllTasks())
+  //   .catch(() => {
+  //     alert('Ooops', 'Something get wrong. Please train again')
+  //   })
+}
+
+const Task = defineComponent({
   props: {
     title: String,
     description: String,
     id: String,
     creationTime: Number,
-    completed: Boolean
+    completed: Boolean,
+    getAllTasks: Function
   },
-  setup() {}
-}
+  methods: {
+    deleteTask(props) {
+      return deleteTaskHandler(props)
+    }
+  },
+  setup(props) {
+    // console.log('task props: ', JSON.parse(JSON.stringify(props)))
+  }
+})
+
+export default Task
 </script>
 
 <template>
@@ -35,7 +56,7 @@ export default {
           />
         </svg>
       </button>
-      <button class="btn btn-danger button">
+      <button class="btn btn-danger button" @click="deleteTask">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
