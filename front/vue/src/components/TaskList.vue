@@ -7,18 +7,8 @@ const TaskList = defineComponent({
     tasks: Array,
     getAllTasks: Function
   },
-  data() {
-    return {
-      tasksList: []
-    }
-  },
   components: {
     Task
-  },
-  watch: {
-    tasks(newTasks) {
-      this.tasksList = newTasks
-    }
   }
 })
 
@@ -26,9 +16,9 @@ export default TaskList
 </script>
 
 <template>
-  <section class="tasks-section" v-if="tasksList.length > 0">
+  <section class="tasks-section" v-if="tasks.length > 0">
     <Task
-      v-for="item in tasksList"
+      v-for="item in tasks"
       :key="item.id"
       :title="item.title"
       :description="item.description"
@@ -39,7 +29,7 @@ export default TaskList
     />
   </section>
   <section v-else class="tasks-section">
-    <p v-if="!tasks.length || tasks.length <= 0" class="no-list">NO TASKS</p>
+    <p class="no-list">NO TASKS</p>
   </section>
 </template>
 

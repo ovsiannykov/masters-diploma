@@ -32,10 +32,6 @@ const HomeView = defineComponent({
   async mounted() {
     const taskArr = await this.handler()
     this.tasks = taskArr
-
-    // console.log('Home: ', this.tasks)
-
-    //console.log(JSON.parse(JSON.stringify(this.tasks)))
   },
   methods: {
     handler: getTasksHandler

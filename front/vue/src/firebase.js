@@ -28,3 +28,5 @@ export async function getTasks(myCollection) {
     return []
   }
 }
+
+//console.log(JSON.parse(JSON.stringify(this.tasks)))
