@@ -18,6 +18,9 @@ const TaskList = defineComponent({
   watch: {
     tasks(newTasks) {
       this.tasksList = newTasks
+
+      console.log('newTasks: ', newTasks)
+      console.log('tasksList: ', this.tasksList)
     }
   }
 })
@@ -34,6 +37,7 @@ export default TaskList
       :description="item.description"
       :completed="item.completed"
       :creationTime="item.creationTime"
+      :id="item.id"
       :getAllTasks="getAllTasks"
     />
   </section>

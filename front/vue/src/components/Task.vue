@@ -1,13 +1,16 @@
 <script>
+import { deleteDoc, doc } from 'firebase/firestore'
 import { defineComponent } from 'vue'
+import { db } from '../firebase'
 
-function deleteTaskHandler(props) {
-  //const docRef = doc(db, 'tasks', id)
-  // deleteDoc(docRef)
-  //   .then(() => getAllTasks())
-  //   .catch(() => {
-  //     alert('Ooops', 'Something get wrong. Please train again')
-  //   })
+function deleteTaskHandler(id, getAllTasks) {
+  console.log('click')
+  const docRef = doc(db, 'tasks', id)
+  deleteDoc(docRef)
+    .then(() => getAllTasks())
+    .catch(() => {
+      alert('Ooops', 'Something get wrong. Please train again')
+    })
 }
 
 const Task = defineComponent({
@@ -21,11 +24,8 @@ const Task = defineComponent({
   },
   methods: {
     deleteTask(props) {
-      return deleteTaskHandler(props)
+      return deleteTaskHandler(props.id, props.getAllTasks)
     }
-  },
-  setup(props) {
-    // console.log('task props: ', JSON.parse(JSON.stringify(props)))
   }
 })
 
