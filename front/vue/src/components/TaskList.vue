@@ -18,9 +18,6 @@ const TaskList = defineComponent({
   watch: {
     tasks(newTasks) {
       this.tasksList = newTasks
-
-      console.log('newTasks: ', newTasks)
-      console.log('tasksList: ', this.tasksList)
     }
   }
 })

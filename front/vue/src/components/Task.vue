@@ -3,16 +3,6 @@ import { deleteDoc, doc } from 'firebase/firestore'
 import { defineComponent } from 'vue'
 import { db } from '../firebase'
 
-function deleteTaskHandler(id, getAllTasks) {
-  console.log('click')
-  const docRef = doc(db, 'tasks', id)
-  deleteDoc(docRef)
-    .then(() => getAllTasks())
-    .catch(() => {
-      alert('Ooops', 'Something get wrong. Please train again')
-    })
-}
-
 const Task = defineComponent({
   props: {
     title: String,
@@ -23,8 +13,17 @@ const Task = defineComponent({
     getAllTasks: Function
   },
   methods: {
-    deleteTask(props) {
-      return deleteTaskHandler(props.id, props.getAllTasks)
+    deleteTaskHandler() {
+      const { id, getAllTasks } = this.$props
+      const docRef = doc(db, 'tasks', id)
+
+      deleteDoc(docRef)
+        .then(() => {
+          getAllTasks()
+        })
+        .catch(() => {
+          alert('Ooops', 'Something get wrong. Please train again')
+        })
     }
   }
 })
@@ -56,7 +55,7 @@ export default Task
           />
         </svg>
       </button>
-      <button class="btn btn-danger button" @click="deleteTask">
+      <button class="btn btn-danger button" @click="deleteTaskHandler">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

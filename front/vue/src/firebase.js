@@ -15,22 +15,6 @@ export const db = getFirestore()
 
 export const taskCollection = collection(db, 'tasks')
 
-// export async function getTasks(myCollection) {
-//   let result = []
-//   try {
-//     const responce = await getDocs(myCollection)
-
-//     await responce.docs.map((doc) => {
-//       result.push({ ...doc.data(), id: doc.id })
-//     })
-
-//     return result
-//   } catch (error) {
-//     console.log(error)
-//     return []
-//   }
-// }
-
 export async function getTasks(myCollection) {
   try {
     const snapshot = await getDocs(myCollection)
