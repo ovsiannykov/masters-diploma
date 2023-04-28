@@ -34,7 +34,11 @@ const HomeView = defineComponent({
     this.tasks = taskArr
   },
   methods: {
-    handler: getTasksHandler
+    handler: getTasksHandler,
+    updateTasks: async function () {
+      const taskArr = await this.handler()
+      this.tasks = taskArr
+    }
   }
 })
 
@@ -43,8 +47,8 @@ export default HomeView
 
 <template>
   <div class="container">
-    <NewTaskForm :getAllTasks="handler" />
-    <TaskList :tasks="tasks" :getAllTasks="handler" />
+    <NewTaskForm :getAllTasks="updateTasks" />
+    <TaskList :tasks="tasks" :getAllTasks="updateTasks" />
   </div>
 </template>
 
