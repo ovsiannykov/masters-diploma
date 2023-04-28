@@ -1,5 +1,5 @@
 <script>
-import { deleteDoc, doc } from 'firebase/firestore'
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { defineComponent } from 'vue'
 import { db } from '../firebase'
 
@@ -24,6 +24,20 @@ const Task = defineComponent({
         .catch(() => {
           alert('Ooops', 'Something get wrong. Please train again')
         })
+    },
+    checkTaskHandler() {
+      const { id, getAllTasks } = this.$props
+      const docRef = doc(db, 'tasks', id)
+
+      updateDoc(docRef, {
+        completed: true
+      })
+        .then(() => {
+          getAllTasks()
+        })
+        .catch(() => {
+          alert('Ooops', 'Something get wrong. Please train again')
+        })
     }
   }
 })
@@ -34,14 +48,19 @@ export default Task
 <template>
   <div class="task">
     <div class="info">
-      <h4>{{ title }}</h4>
+      <h4 v-if="completed == false">{{ title }}</h4>
+      <h4 v-else class="h4-completed">{{ title }}</h4>
 
-      <p class="description" v-if="description">
+      <p class="description" v-if="description && completed !== true">
         {{ description }}
       </p>
     </div>
     <div class="buttons">
-      <button class="btn btn-primary button" v-if="!completed">
+      <button
+        class="btn btn-primary button"
+        v-if="completed !== undefined && completed === false"
+        @click="checkTaskHandler"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="72"
@@ -115,6 +134,10 @@ export default Task
   hyphens: manual;
   overflow: hidden;
   max-height: 80px;
+}
+
+.h4-completed {
+  text-decoration: line-through;
 }
 
 @media only screen and (max-width: 600px) {
