@@ -1,0 +1,13 @@
+.no-list {
+  color: gray;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.tasks-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

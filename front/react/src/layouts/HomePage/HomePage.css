@@ -1,0 +1,41 @@
+header {
+  width: 100%;
+  padding: 10px 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  position: fixed;
+}
+
+.app-container {
+  margin-top: 1rem;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+
+  align-items: center;
+}
+
+.back-button {
+  background-color: #61dafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.back-button:hover {
+  background-color: #33485e;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+}
