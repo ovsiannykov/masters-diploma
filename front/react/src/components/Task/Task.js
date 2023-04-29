@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import "./Task.css";
 
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function Task({
@@ -12,9 +12,9 @@ function Task({
   completed,
   updateTasksHandler,
 }) {
-  const taskDeleteHandler = useCallback(() => {
-    const docRef = doc(db, "tasks", id);
+  const docRef = doc(db, "tasks", id);
 
+  const taskDeleteHandler = useCallback(() => {
     deleteDoc(docRef)
       .then(() => {
         updateTasksHandler();
@@ -22,7 +22,19 @@ function Task({
       .catch(() => {
         alert("Ooops", "Something get wrong. Please train again");
       });
-  }, [id, updateTasksHandler]);
+  }, [docRef, updateTasksHandler]);
+
+  const taskCheckHandler = useCallback(() => {
+    updateDoc(docRef, {
+      completed: true,
+    })
+      .then(() => {
+        updateTasksHandler();
+      })
+      .catch(() => {
+        alert("Ooops", "Something get wrong. Please train again");
+      });
+  }, [docRef, updateTasksHandler]);
 
   return (
     <div className="task">
@@ -39,7 +51,7 @@ function Task({
       </div>
       <div className="buttons">
         {completed !== undefined && completed === false && (
-          <button className="btn btn-primary button">
+          <button className="btn btn-primary button" onClick={taskCheckHandler}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="72"
