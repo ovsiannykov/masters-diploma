@@ -1,18 +1,37 @@
+import { addDoc } from "firebase/firestore";
 import React, { useCallback, useState } from "react";
+import { taskCollection } from "../../firebase";
 import "./NewTaskForm.css";
 
-function NewTaskForm() {
+function NewTaskForm({ updateHandler }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const addNewTaskHandler = useCallback(() => {
     const form = document.querySelector(".form");
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      console.log(title, description);
+      const newTask = {
+        creationTime: Date.now(),
+        description: description,
+        title: title,
+        completed: false,
+      };
+
+      addDoc(taskCollection, newTask)
+        .then(() => {
+          setTitle("");
+          setDescription("");
+          updateHandler();
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Ooops...", "Something get wrong. Try again!");
+        });
     });
-  }, [description, title]);
+  }, [description, title, updateHandler]);
 
   return (
     <section className="new-task-section">
