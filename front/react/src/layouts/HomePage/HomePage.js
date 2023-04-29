@@ -1,4 +1,5 @@
 import React from "react";
+import TaskList from "../../components/TaskList/TaskList";
 import logo from "../../logo.svg";
 import "./HomePage.css";
 
@@ -26,7 +27,7 @@ function HomePage() {
         </div>
       </header>
       <main>
-        <h1>Hello</h1>
+        <TaskList />
       </main>
     </div>
   );
