@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./Task.css";
+
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function Task({
   title,
@@ -9,6 +12,18 @@ function Task({
   completed,
   updateTasksHandler,
 }) {
+  const taskDeleteHandler = useCallback(() => {
+    const docRef = doc(db, "tasks", id);
+
+    deleteDoc(docRef)
+      .then(() => {
+        updateTasksHandler();
+      })
+      .catch(() => {
+        alert("Ooops", "Something get wrong. Please train again");
+      });
+  }, [id, updateTasksHandler]);
+
   return (
     <div className="task">
       <div className="info">
@@ -37,7 +52,7 @@ function Task({
             </svg>
           </button>
         )}
-        <button className="btn btn-danger button">
+        <button className="btn btn-danger button" onClick={taskDeleteHandler}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
