@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { taskCollection } from "../../firebase";
 import "./NewTaskForm.css";
 
-function NewTaskForm({ updateHandler }) {
+function NewTaskForm({ updateTasksHandler }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -24,14 +24,14 @@ function NewTaskForm({ updateHandler }) {
         .then(() => {
           setTitle("");
           setDescription("");
-          updateHandler();
+          updateTasksHandler();
         })
         .catch((err) => {
           console.log(err);
           alert("Ooops...", "Something get wrong. Try again!");
         });
     });
-  }, [description, title, updateHandler]);
+  }, [description, title, updateTasksHandler]);
 
   return (
     <section className="new-task-section">

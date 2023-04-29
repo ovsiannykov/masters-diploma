@@ -1,0 +1,58 @@
+.task {
+  width: 600px;
+  border-width: 1px;
+  padding: 20px 30px;
+  border-radius: 12px;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.12);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.12);
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.info {
+  max-width: 80%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  max-width: 40%;
+  padding: 0 4px;
+}
+
+.button {
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 4px;
+}
+
+.description {
+  hyphens: manual;
+  overflow: hidden;
+  max-height: 80px;
+}
+
+.h4-completed {
+  text-decoration: line-through;
+}
+
+@media only screen and (max-width: 600px) {
+  .task {
+    max-width: 350px;
+  }
+
+  .button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+}

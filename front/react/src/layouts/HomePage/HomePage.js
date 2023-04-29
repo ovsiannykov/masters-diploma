@@ -1,9 +1,33 @@
-import React from "react";
+import { getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import NewTaskForm from "../../components/NewTaskForm/NewTaskForm";
 import TaskList from "../../components/TaskList/TaskList";
+import { taskCollection } from "../../firebase";
 import logo from "../../logo.svg";
 import "./HomePage.css";
 
 function HomePage() {
+  const [tasks, setTasks] = useState([]);
+
+  async function getAllTasks() {
+    try {
+      const snapshot = await getDocs(taskCollection);
+      let taskArr = [];
+      snapshot.docs.forEach((doc) => {
+        taskArr.push({ ...doc.data(), id: doc.id });
+      });
+
+      setTasks(taskArr);
+      return taskArr;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getAllTasks();
+  }, []);
+
   return (
     <div className="app-container">
       <header>
@@ -27,7 +51,8 @@ function HomePage() {
         </div>
       </header>
       <main>
-        <TaskList />
+        <NewTaskForm updateTasksHandler={getAllTasks} />
+        <TaskList tasksList={tasks} updateTasksHandler={getAllTasks} />
       </main>
     </div>
   );

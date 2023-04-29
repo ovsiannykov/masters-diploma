@@ -1,33 +1,27 @@
-import { getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { taskCollection } from "../../firebase";
-import NewTaskForm from "../NewTaskForm/NewTaskForm";
+import React from "react";
+import Task from "../Task/Task";
+import "./TaskList.css";
 
-function TaskList() {
-  const [tasks, setTasks] = useState([]);
-
-  async function getAllTasks() {
-    try {
-      const snapshot = await getDocs(taskCollection);
-      let taskArr = [];
-      snapshot.docs.forEach((doc) => {
-        taskArr.push({ ...doc.data(), id: doc.id });
-      });
-
-      setTasks(taskArr);
-      return taskArr;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    getAllTasks();
-  }, []);
-
+function TaskList({ tasksList, updateTasksHandler }) {
   return (
     <>
-      <NewTaskForm updateHandler={getAllTasks} />
+      <section className="tasks-section">
+        {tasksList.length > 0 ? (
+          tasksList.map((el) => (
+            <Task
+              key={el.id}
+              title={el.title}
+              description={el.description}
+              id={el.id}
+              creationTime={el.creationTime}
+              completed={el.completed}
+              updateTasksHandler={updateTasksHandler}
+            />
+          ))
+        ) : (
+          <p className="no-list">NO TASKS</p>
+        )}
+      </section>
     </>
   );
 }
