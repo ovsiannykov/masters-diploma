@@ -4,7 +4,7 @@ import { getTasks, taskCollection } from './firebase'
 getTasks(taskCollection)
 
 function back() {
-  alert('ffe')
+  document.location.href = 'https://ovsiannykov.github.io/masters-diploma-public.github.io/'
 }
 </script>
 
