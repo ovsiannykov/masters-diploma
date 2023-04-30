@@ -28,10 +28,15 @@ function HomePage() {
     getAllTasks();
   }, []);
 
+  function backRedirect() {
+    document.location.href =
+      "https://ovsiannykov.github.io/masters-diploma-public.github.io/";
+  }
+
   return (
     <div className="app-container">
       <header>
-        <button className="btn back-button">
+        <button className="btn back-button" onClick={backRedirect}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
