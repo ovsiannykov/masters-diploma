@@ -1,0 +1,127 @@
+@charset 'utf-8';
+
+main {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    308deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(190, 145, 236, 1) 100%
+  );
+}
+
+.main-illustration {
+  width: 70vh;
+  height: 30vw;
+}
+
+.main-container {
+  display: flex;
+  height: 100%;
+}
+
+.info-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.image-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  font-weight: 800 !important;
+  text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.12);
+}
+
+.button-box {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.button {
+  margin-right: 18px;
+  border-color: white;
+}
+
+.button-vue {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+    rgba(44, 187, 99, 0.15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-right: 20px;
+  font-weight: 600;
+}
+
+.button-vue:hover {
+  box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+    rgba(44, 187, 99, 0.25) 0 16px 32px;
+  transform: scale(1.05);
+  color: green;
+}
+
+.button-react {
+  background-color: #61dafb;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 189, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 189, 0.35) 0 1px 2px, rgba(44, 187, 189, 0.35) 0 2px 4px,
+    rgba(44, 187, 189, 0.35) 0 4px 8px, rgba(44, 187, 189, 0.35) 0 8px 16px;
+  color: #212121;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: 600;
+}
+
+.button-react:hover {
+  box-shadow: rgba(44, 187, 189, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 189, 0.25) 0 1px 2px, rgba(44, 187, 189, 0.25) 0 2px 4px,
+    rgba(44, 187, 189, 0.25) 0 4px 8px, rgba(44, 187, 189, 0.25) 0 8px 16px,
+    rgba(44, 187, 189, 0.25) 0 16px 32px;
+  transform: scale(1.05);
+  color: #212121;
+}
+
+@media (max-width: 1100px) {
+  .image-container {
+    display: none;
+  }
+}
