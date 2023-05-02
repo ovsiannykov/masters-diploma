@@ -38,6 +38,12 @@ const Task = defineComponent({
         .catch(() => {
           alert('Ooops', 'Something get wrong. Please train again')
         })
+    },
+    humanReadableDate() {
+      const { creationTime } = this.$props
+      const date = new Date(creationTime)
+      const humanReadableDate = date.toLocaleString()
+      return humanReadableDate
     }
   }
 })
@@ -54,6 +60,7 @@ export default Task
       <p class="description" v-if="description && completed !== true">
         {{ description }}
       </p>
+      <p v-if="creationTime" class="created">{{ humanReadableDate() }}</p>
     </div>
     <div class="buttons">
       <button
@@ -138,6 +145,13 @@ export default Task
 
 .h4-completed {
   text-decoration: line-through;
+}
+
+.created {
+  color: gray;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 300;
 }
 
 @media only screen and (max-width: 600px) {
