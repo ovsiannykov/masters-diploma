@@ -36,6 +36,12 @@ function Task({
       });
   }, [docRef, updateTasksHandler]);
 
+  const humanReadableDate = useCallback(() => {
+    const date = new Date(creationTime);
+    const humanReadableDate = date.toLocaleString();
+    return humanReadableDate;
+  }, [creationTime]);
+
   return (
     <div className="task">
       <div className="info">
@@ -48,6 +54,8 @@ function Task({
         {description && completed !== true && (
           <p className="description">{description}</p>
         )}
+
+        {creationTime && <p className="created">{humanReadableDate()}</p>}
       </div>
       <div className="buttons">
         {completed !== undefined && completed === false && (

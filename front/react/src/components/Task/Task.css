@@ -32,6 +32,13 @@
   margin: 4px;
 }
 
+.created {
+  color: gray;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 300;
+}
+
 .description {
   hyphens: manual;
   overflow: hidden;
